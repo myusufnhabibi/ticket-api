@@ -29,10 +29,10 @@ class DashboardController extends Controller
             ->value('avg_time') ?? 0;
 
         $statusDistribution = [
-            $open = Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'open')->count(),
-            $onprogress = Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'onprogress')->count(),
-            $resolved = Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'resolved')->count(),
-            $rejected = Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'rejected')->count(),
+            'open' => Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'open')->count(),
+            'onprogress' => Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'onprogress')->count(),
+            'resolved' => Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'resolved')->count(),
+            'rejected' => Aduan::whereBetween('created_at', [$currentOfMonth, $endOfMonth])->where('status', '=', 'rejected')->count(),
         ];
 
         $dashboradData = [
@@ -45,7 +45,7 @@ class DashboardController extends Controller
 
         return response()->json([
             'message' => 'Dashboard retrieved successfully',
-            'data' => DashboardResource::collection($dashboradData)
+            'data' => new DashboardResource($dashboradData)
         ], 200);
 
     }

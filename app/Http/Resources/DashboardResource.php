@@ -15,15 +15,15 @@ class DashboardResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'total_aduan' => $this->total_aduan,
-            'resolve_aduan' => $this->resolve_aduan,
-            'avg_aduan' => $this->avg_aduan,
-            'active_aduan' => $this->active_aduan,
-            'status_distribution' => [
-                'open' => $this->distribusi_aduan->open,
-                'onprogress' => $this->distribusi_aduan->onprogress,
-                'resolved' => $this->distribusi_aduan->resolved,
-                'rejected' => $this->distribusi_aduan->rejected
+            'total_aduan' => $this['total_aduan'],
+            'active_aduan' => $this['active_aduan'],
+            'resolve_aduan' => $this['resolve_aduan'],
+            'avg_aduan' => $this['avg_aduan'],
+            'distribusi_aduan' => [
+                'open' => $this['distribusi_aduan']['open'],
+                'onprogress' => $this['distribusi_aduan']['onprogress'],
+                'resolved' => $this['distribusi_aduan']['resolved'],
+                'rejected' => $this['distribusi_aduan']['rejected']
             ]
         ];
     }
