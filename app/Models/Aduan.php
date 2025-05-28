@@ -19,5 +19,10 @@ class Aduan extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }    
+    }
+
+    public function aduan_balasans()
+    {
+        return $this->hasMany(AduanBalasan::class);
+    }
 }
